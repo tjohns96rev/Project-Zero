@@ -1,19 +1,12 @@
-package com.revature.service;
+package com.revature.repository;
 
 import java.util.List;
 
 import com.revature.models.Planet;
-import com.revature.repository.PlanetDao;
 
-public class PlanetService {
-
-	private PlanetDao dao;
-
-	public PlanetService(){
-		this.dao = new PlanetDao();
-	}
-
-	public List<Planet> getAllPlanets() {
+public class PlanetDao {
+    
+    public List<Planet> getAllPlanets() {
 		// TODO Auto-generated method stub
 		return null;
 	}

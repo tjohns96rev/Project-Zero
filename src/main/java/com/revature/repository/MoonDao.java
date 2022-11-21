@@ -1,19 +1,12 @@
-package com.revature.service;
+package com.revature.repository;
 
 import java.util.List;
 
 import com.revature.models.Moon;
-import com.revature.repository.MoonDao;
 
-public class MoonService {
-
-	private MoonDao dao;
-
-	public MoonService(){
-		this.dao = new MoonDao();
-	}
-
-	public List<Moon> getAllMoons() {
+public class MoonDao {
+    
+    public List<Moon> getAllMoons() {
 		// TODO Auto-generated method stub
 		return null;
 	}
