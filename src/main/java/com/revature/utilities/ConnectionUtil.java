@@ -8,7 +8,11 @@ public class ConnectionUtil {
     
     public static Connection createConnection(){
         try {
-            return DriverManager.getConnection(System.getenv("URL"), System.getenv("USERNAME"), System.getenv("PASSWORD"));
+            return DriverManager.getConnection(
+                System.getenv("URL"), 
+                System.getenv("USERNAME"), 
+                System.getenv("PASSWORD")
+            );
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
