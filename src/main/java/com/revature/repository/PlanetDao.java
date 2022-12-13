@@ -101,10 +101,9 @@ public class PlanetDao {
 
 	public static void main(String[] args) {
 		PlanetDao planetDao = new PlanetDao();
-		// Planet testPlanet = new Planet();
-		// testPlanet.setName("Mars");
-		// testPlanet.setOwnerId(2);
-		// planetDao.createPlanet("null", testPlanet);
-		System.out.println(planetDao.getPlanetByName("null", "Earth"));
+		Planet testPlanet = new Planet();
+		testPlanet.setName("Mars");
+		testPlanet.setOwnerId(1);
+		planetDao.createPlanet("null", testPlanet);
 	}
 }

@@ -88,7 +88,16 @@ public class MoonDao {
 	}
 
 	public void deleteMoonById(int moonId) {
-		// TODO Auto-generated method stub
+		try (Connection connection = ConnectionUtil.createConnection()) {
+			String sqlStatement = "delete from moons where id=?";
+			PreparedStatement ps = connection.prepareStatement(sqlStatement);
+			ps.setInt(1, moonId);
+			ps.execute();
+			return;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
 	}
 
 	public List<Moon> getMoonsFromPlanet(int planetId) {
@@ -115,11 +124,10 @@ public class MoonDao {
 
 	public static void main(String[] args) {
 		MoonDao moonDao = new MoonDao();
-		// Moon newMoon = new Moon();
-		// newMoon.setName("Deimos");
-		// newMoon.setMyPlanetId(2);
-		// moonDao.createMoon(null, newMoon);
-		System.out.println(moonDao.getMoonById(null, 3));
+		Moon newMoon = new Moon();
+		newMoon.setName("Deimos");
+		newMoon.setMyPlanetId(3);
+		moonDao.createMoon(null, newMoon);
 	}
 
 }
