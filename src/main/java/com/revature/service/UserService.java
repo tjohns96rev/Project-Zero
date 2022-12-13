@@ -8,15 +8,15 @@ public class UserService {
 
 	private UserDao dao;
 
-	public UserService(){
+	public UserService() {
 		this.dao = new UserDao();
 	}
 
 	public User getUserByUsername(String username) {
-		return null;
+		return this.dao.getUserByUsername(username);
 	}
 
 	public User register(UsernamePasswordAuthentication registerRequest) {
-		return null;
+		return this.dao.createUser(registerRequest);
 	}
 }
