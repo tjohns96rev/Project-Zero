@@ -98,12 +98,4 @@ public class PlanetDao {
 			return;
 		}
 	}
-
-	public static void main(String[] args) {
-		PlanetDao planetDao = new PlanetDao();
-		Planet testPlanet = new Planet();
-		testPlanet.setName("Mars");
-		testPlanet.setOwnerId(1);
-		planetDao.createPlanet("null", testPlanet);
-	}
 }

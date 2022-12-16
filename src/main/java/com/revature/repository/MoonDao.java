@@ -121,13 +121,4 @@ public class MoonDao {
 			return moons;
 		}
 	}
-
-	public static void main(String[] args) {
-		MoonDao moonDao = new MoonDao();
-		Moon newMoon = new Moon();
-		newMoon.setName("Deimos");
-		newMoon.setMyPlanetId(3);
-		moonDao.createMoon(null, newMoon);
-	}
-
 }

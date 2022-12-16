@@ -49,13 +49,4 @@ public class UserDao {
             return new User();
         }
     }
-
-    public static void main(String[] args) {
-        UserDao dao = new UserDao();
-        UsernamePasswordAuthentication newUser = new UsernamePasswordAuthentication();
-        newUser.setUsername("jeff23");
-        newUser.setPassword("password");
-        dao.createUser(newUser);
-    }
-
 }
