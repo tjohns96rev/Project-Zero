@@ -74,12 +74,23 @@ public class PlanetDao {
 
 	public Planet createPlanet(String username, Planet p) {
 		try (Connection connection = ConnectionUtil.createConnection()) {
-			String sqlStatement = "insert into planets values(default,?,?)";
+			String sqlStatement = "insert into planets values(default,?,?) returning id";
 			PreparedStatement ps = connection.prepareStatement(sqlStatement);
 			ps.setString(1, p.getName());
 			ps.setInt(2, p.getOwnerId());
-			ps.execute();
-			return p;
+			ResultSet rs = ps.executeQuery();
+			Planet newPlanet = new Planet();
+			rs.next();
+			int newPlanetId = rs.getInt(1);
+			sqlStatement = "select * from planets where id = ?";
+			ps = connection.prepareStatement(sqlStatement);
+			ps.setInt(1, newPlanetId);
+			rs = ps.executeQuery();
+			rs.next();
+			newPlanet.setId(rs.getInt("id"));
+			newPlanet.setName(rs.getString("name"));
+			newPlanet.setOwnerId(rs.getInt("ownerid"));
+			return newPlanet;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return new Planet();

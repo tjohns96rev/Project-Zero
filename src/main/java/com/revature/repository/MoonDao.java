@@ -75,12 +75,23 @@ public class MoonDao {
 
 	public Moon createMoon(String username, Moon m) {
 		try (Connection connection = ConnectionUtil.createConnection()) {
-			String sqlStatement = "insert into moons values(default,?,?)";
+			String sqlStatement = "insert into moons values(default,?,?) returning id";
 			PreparedStatement ps = connection.prepareStatement(sqlStatement);
 			ps.setString(1, m.getName());
 			ps.setInt(2, m.getMyPlanetId());
-			ps.execute();
-			return m;
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int newMoonId = rs.getInt(1);
+			Moon newMoon = new Moon();
+			sqlStatement = "select * from moons where id = ?";
+			ps = connection.prepareStatement(sqlStatement);
+			ps.setInt(1, newMoonId);
+			rs = ps.executeQuery();
+			rs.next();
+			newMoon.setId(rs.getInt("id"));
+			newMoon.setName(rs.getString("name"));
+			newMoon.setMyPlanetId(rs.getInt("ownerid"));
+			return newMoon;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return new Moon();
