@@ -9,6 +9,7 @@ public class RequestMapping {
 	private static AuthenticateController authController = new AuthenticateController();
 	private static PlanetController planetController = new PlanetController();
 	private static MoonController moonController = new MoonController();
+	private static LogParserController logParserController = new LogParserController();
 
 	public static void setupEndpoints(Javalin app) {
 
@@ -68,5 +69,7 @@ public class RequestMapping {
 
 		// Delete a moon
 		app.delete("api/moon/{id}", ctx -> moonController.deleteMoon(ctx));
+
+		app.get("api/logmetrics", ctx -> logParserController.getLogMetrics(ctx));
 	}
 }
